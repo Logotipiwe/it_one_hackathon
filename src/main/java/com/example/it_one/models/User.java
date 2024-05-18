@@ -9,6 +9,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     private Long id;
