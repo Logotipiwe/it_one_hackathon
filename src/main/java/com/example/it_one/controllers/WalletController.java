@@ -3,12 +3,13 @@ package com.example.it_one.controllers;
 import com.example.it_one.models.Wallet;
 import com.example.it_one.repositories.WalletRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-@RestController("/api/wallets")
+@RestController("")
 public class WalletController {
 
     private final WalletRepository walletRepository;
@@ -17,7 +18,7 @@ public class WalletController {
         this.walletRepository = walletRepository;
     }
 
-    @GetMapping("/create")
+    @GetMapping("/wallet/create")
     public Wallet fillDB() {
         Wallet wallet = new Wallet();
         wallet.setId(1L);
@@ -28,7 +29,9 @@ public class WalletController {
     }
 
     @GetMapping("/get/wallet/{id}")
-    public Optional<Wallet> getWalletDetails(@RequestParam(name = "id") Long id) {
+    public Optional<Wallet> getWalletDetails (
+            @PathVariable Long id
+    ) {
         Optional<Wallet> wallet = walletRepository.findById(id);
         return wallet;
     }

@@ -14,5 +14,8 @@ public class User {
     @Id
     private Long id;
     private String firstname;
-    private Integer age;
+    private String lastname;
+    private String email;
+    private String password;
+
 }
