@@ -2,12 +2,11 @@ package com.example.it_one.controllers;
 
 import com.example.it_one.models.Wallet;
 import com.example.it_one.repositories.WalletRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController("/api/wallets")
 public class TestController {
@@ -21,17 +20,16 @@ public class TestController {
     @GetMapping("/create")
     public Wallet fillDB() {
         Wallet wallet = new Wallet();
-        wallet.setId(0L);
-        wallet.setTitle("TEST");
-        wallet.setSum(1000);
+        wallet.setId(1L);
+        wallet.setTitle("TEST1");
+        wallet.setSum(5000);
         walletRepository.save(wallet);
         return wallet;
     }
 
-
     @GetMapping("/get/wallet/{id}")
-    public Wallet getWalletDetails(@RequestParam Long id) {
-        Wallet wallet_info = walletRepository.fildById(id);
-        return wallet_info;
+    public Optional<Wallet> getWalletDetails(@RequestParam(name = "id") Long id) {
+        Optional<Wallet> wallet = walletRepository.findById(id);
+        return wallet;
     }
 }
