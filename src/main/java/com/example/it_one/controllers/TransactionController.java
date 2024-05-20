@@ -2,6 +2,7 @@ package com.example.it_one.controllers;
 
 
 import com.example.it_one.models.Transaction;
+import com.example.it_one.models.Wallet;
 import com.example.it_one.repositories.TransactionRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +34,7 @@ public class TransactionController {
         return transaction;
     }
 
-    @GetMapping("get/transaction/{id}")
+    @GetMapping("transaction/get/{id}")
     public Optional<Transaction> get_transaction_by_id (
             @PathVariable Long id
     ) {

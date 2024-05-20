@@ -12,4 +12,7 @@ public class Wallet {
     private String title;
     private Integer sum;
 
+    public void minusSum(Integer value) {
+        sum -= value;
+    }
 }

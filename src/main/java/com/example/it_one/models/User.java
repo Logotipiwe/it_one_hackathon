@@ -1,9 +1,6 @@
 package com.example.it_one.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
@@ -13,6 +10,11 @@ import lombok.Data;
 public class User {
     @Id
     private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "user_wallet_id")
+    private Wallet userWallet;
+
     private String firstname;
     private String lastname;
     private String email;

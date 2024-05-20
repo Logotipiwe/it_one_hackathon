@@ -35,4 +35,22 @@ public class WalletController {
         Optional<Wallet> wallet = walletRepository.findById(id);
         return wallet;
     }
+
+    @GetMapping("transaction/make/{sum}/{id}")
+    public Object make_transaction(
+            @PathVariable Integer sum, @PathVariable Long id
+    ) {
+        Optional<Wallet> optionalWallet = walletRepository.findById(id);
+
+        if (optionalWallet.isPresent()) {
+            Wallet wallet = optionalWallet.get();
+            wallet.minusSum(sum);
+            walletRepository.save(wallet);
+
+            return "Transaction successful. New balance: " + wallet.getSum();
+        } else {
+            return "Wallet not found";
+        }
+    }
+
 }
